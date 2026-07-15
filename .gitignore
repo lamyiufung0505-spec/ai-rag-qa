@@ -11,3 +11,4 @@ index/
 
 # 系统
 .DS_Store
+data/*.pdf
