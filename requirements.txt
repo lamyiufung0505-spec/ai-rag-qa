@@ -1,0 +1,6 @@
+fastembed
+pypdf
+openai
+streamlit
+python-dotenv
+numpy

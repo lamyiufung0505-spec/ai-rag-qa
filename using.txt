@@ -1,0 +1,2 @@
+cd C:\Users\HP\ai-rag-qa
+.venv\Scripts\python.exe -m streamlit run src/app.py

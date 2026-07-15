@@ -1,0 +1,13 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# 本地索引（含你的文档向量，不入库）
+index/
+
+# 密钥
+.env
+
+# 系统
+.DS_Store
