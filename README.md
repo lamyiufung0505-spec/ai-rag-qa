@@ -76,9 +76,9 @@ ai-rag-qa/
 ├─ index/           # 自动生成的向量索引（不入库）
 ├─ src/
 │  ├─ config.py     # 路径 / 密钥 / 参数
-│  ├─ ingst.py     # 文档加载与切块
+│  ├─ ingest.py      # 文档加载与切块
 │  ├─ embeddings.py # 本地向量化 + 余弦检索 + 持久化
-│  ├─ qa.py        # 调 DeepSeek 生成答案
+│  ├─ qa.py         # 调 DeepSeek 生成答案
 │  ├─ cli.py        # 命令行入口
 │  └─ app.py        # Streamlit 网页界面
 ├─ .env             # DeepSeek key（已填好）

@@ -1,4 +1,4 @@
-"""全局配置：路径、密钥、模型与切块参数。"""
+"""这个文件做什么：集中管理全局配置，包括目录路径、DeepSeek API 密钥、向量模型、文本切块与检索参数。"""
 import os
 from pathlib import Path
 

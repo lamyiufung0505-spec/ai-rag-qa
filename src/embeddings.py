@@ -1,4 +1,4 @@
-"""本地向量化与检索（不依赖付费 embedding API）。
+"""这个文件做什么：负责本地文本向量化和相似度检索（不依赖付费 embedding API）。
 
 - 用 fastembed 在本地把文本变成向量
 - 用 numpy 做余弦相似度检索 top-k

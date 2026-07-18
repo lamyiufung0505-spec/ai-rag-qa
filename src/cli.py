@@ -1,4 +1,4 @@
-"""命令行入口：
+"""这个文件做什么：命令行入口，让用户通过终端指令控制 RAG 流程（ingest 建立索引 / ask 提问）。
 
     python -m src.cli ingest          # 读取 data/ 并建立索引
     python -m src.cli ask "你的问题"   # 基于文档回答

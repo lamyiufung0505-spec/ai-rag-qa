@@ -1,4 +1,4 @@
-"""基于检索到的上下文，调用 DeepSeek 生成答案。
+"""这个文件做什么：根据用户问题检索最相关的文档片段，再调用 DeepSeek 大模型生成基于上下文的答案。
 
 核心原则：只依据【上下文】回答，不知道就明说，不编造。
 """
@@ -46,5 +46,13 @@ def ask(query: str, top_k: int = 4, show_context: bool = False) -> str:
 
     if show_context:
         srcs = ", ".join(sorted({h["doc"]["source"] for h in hits}))
-        return f"{answer}\n\n🔎 参考来源：{srcs}"
+        ctx_block = "\n\n".join(
+            f"▸ [{h['doc']['source']}] (相似度 {h['score']:.3f})\n{h['doc']['text']}"
+            for h in hits
+        )
+        return (
+            f"{answer}\n\n"
+            f"🔎 参考来源：{srcs}\n\n"
+            f"---\n\n📄 检索到的原文片段：\n\n{ctx_block}"
+        )
     return answer
