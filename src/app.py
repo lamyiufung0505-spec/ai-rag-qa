@@ -5,7 +5,7 @@
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # 把项目根目录加入模块搜索路径，确保能 import src
 
 from src import embeddings
 from src.qa import ask
@@ -21,9 +21,9 @@ with st.sidebar:
         with st.spinner("正在向量化（首次会下载模型）…"):
             n = embeddings.build_index()
         st.success(f"索引完成：{n} 个文本块")
-    st.caption("把你的 PDF / TXT / MD 放进 data/ 目录即可")
+    st.caption("把你的 PDF / TXT / MD 放进 data/ 目录即可")  # 左侧栏：点击按钮后读取 data/ 并重建索引
 
-st.header("② 提问")
+st.header("② 提问")  # 主区域：输入问题后调 ask() 生成答案
 q = st.text_input("输入你的问题：")
 top_k = st.slider("检索段落数", 1, 8, 4)
 show_ctx = st.checkbox("显示检索到的原文片段", value=True)

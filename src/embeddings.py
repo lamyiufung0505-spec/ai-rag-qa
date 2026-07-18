@@ -15,6 +15,7 @@ _embedder = None
 
 
 def get_embedder():
+    """懒加载本地向量模型，返回单例（第一次调用会下载模型）。"""
     global _embedder
     if _embedder is None:
         from fastembed import TextEmbedding
@@ -43,6 +44,7 @@ def build_index() -> int:
 
 
 def load_index():
+    """加载已保存的索引文件（文档块 + 向量矩阵），返回 dict。"""
     if not INDEX_FILE.exists():
         raise FileNotFoundError("索引不存在，请先运行：python -m src.cli ingest")
     with open(INDEX_FILE, "rb") as f:

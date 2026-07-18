@@ -15,6 +15,7 @@ SYSTEM_PROMPT = (
 
 
 def build_user_prompt(query: str, hits: list) -> str:
+    """把检索到的片段拼成给 DeepSeek 的提示词（上下文 + 问题）。"""
     ctx = "\n\n".join(
         f"[来源 {h['doc']['source']}]\n{h['doc']['text']}" for h in hits
     )
@@ -22,6 +23,7 @@ def build_user_prompt(query: str, hits: list) -> str:
 
 
 def ask(query: str, top_k: int = 4, show_context: bool = False) -> str:
+    """执行一次 RAG 问答：检索相关片段 → 调 DeepSeek → 返回答案。"""
     if not DEEPSEEK_API_KEY:
         return "❌ 未设置 DEEPSEEK_API_KEY，请在 .env 里填入你的 DeepSeek key。"
 

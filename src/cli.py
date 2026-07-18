@@ -10,6 +10,7 @@ from .qa import ask
 
 
 def main():
+    """命令行主入口：解析 ingest / ask 子命令并调度对应逻辑。"""
     p = argparse.ArgumentParser(description="本地 RAG 文档问答")
     sub = p.add_subparsers(dest="cmd")
 
