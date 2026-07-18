@@ -1,8 +1,10 @@
-"""这个文件做什么：命令行入口，让用户通过终端指令控制 RAG 流程（ingest 建立索引 / ask 提问）。
+"""这个文件做什么：命令行入口，让你不写代码也能在终端里使用这个项目。
 
-    python -m src.cli ingest          # 读取 data/ 并建立索引
-    python -m src.cli ask "你的问题"   # 基于文档回答
-"""
+提供两个子命令：
+- python -m src.cli ingest    → 读取 data/ 文档并建立向量索引（底层调 embeddings.build_index）
+- python -m src.cli ask "问题" → 基于索引回答（底层调 qa.ask），支持 --top-k 和 --show-context
+
+用 argparse 解析参数，是项目的"无界面"使用方式，适合批量处理或在脚本里调用。"""
 import argparse
 
 from . import embeddings

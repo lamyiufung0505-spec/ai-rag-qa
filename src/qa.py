@@ -1,7 +1,12 @@
-"""这个文件做什么：根据用户问题检索最相关的文档片段，再调用 DeepSeek 大模型生成基于上下文的答案。
+"""这个文件做什么：RAG 的"大脑 / 生成层" —— 拿到问题后，检索相关片段并调用大模型生成答案。
 
-核心原则：只依据【上下文】回答，不知道就明说，不编造。
-"""
+工作流程：
+1. search：先调 embeddings.search 取出与问题最相关的若干原文片段
+2. build_user_prompt：把这些片段拼成带【上下文】的提示词
+3. ask：调用 DeepSeek，严格只依据【上下文】作答；上下文里找不到就明说"无法回答"，绝不编造
+4. 可选 show_context：在答案后附上参考来源文件名与检索到的原文片段，方便核对
+
+它是连接"检索"与"回答"的最后一公里，决定最终输出质量。"""
 from openai import OpenAI
 
 from .config import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL

@@ -1,7 +1,11 @@
-"""这个文件做什么：提供 Streamlit 网页界面，左侧一键读取 data/ 文档并建立向量索引，右侧输入问题后基于索引生成答案。
+"""这个文件做什么：Streamlit 网页界面，提供在浏览器里运行的图形化交互（项目的"有界面"使用方式）。
 
-运行：streamlit run src/app.py
-"""
+布局与功能：
+- 左侧栏：一个按钮"读取 data/ 并重建索引"，点击即调 embeddings.build_index()
+- 主区域：输入框填问题、滑块选检索段落数、勾选是否显示原文，点"回答"后调 qa.ask() 实时显示答案
+- 展开区：以可折叠形式列出检索到的原文片段与相似度，方便溯源核对
+
+比 CLI 更直观，适合非技术用户直接上手。运行：streamlit run src/app.py"""
 import sys
 from pathlib import Path
 

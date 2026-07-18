@@ -1,9 +1,12 @@
-"""这个文件做什么：负责本地文本向量化和相似度检索（不依赖付费 embedding API）。
+"""这个文件做什么：RAG 的"检索引擎" —— 负责把文字变成向量，并按语义找出最相关的内容。
 
-- 用 fastembed 在本地把文本变成向量
-- 用 numpy 做余弦相似度检索 top-k
-- 索引（文档块 + 向量矩阵）持久化到 index/index.pkl
-"""
+功能特点：
+- 本地向量化：用 fastembed 在本地把文本转成向量，不依赖任何付费 embedding API
+- build_index：把 ingest 切好的文本块向量化、做 L2 归一化，连同原文一起存成 index/index.pkl（首次会联网下载模型）
+- load_index：在需要时把已保存的索引从磁盘读回内存
+- search：把用户问题向量化，与索引做余弦相似度计算，返回相似度最高的 top-k 个片段
+
+这个文件让"问一个问题 → 找到文档里最相关的几句"成为可能，是检索的核心。"""
 import pickle
 
 import numpy as np
