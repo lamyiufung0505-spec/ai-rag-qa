@@ -1,9 +1,9 @@
 # 本地 RAG 文档问答（ai-rag-qa）
 
-一个**完全本地运行**的检索增强生成（RAG）问答工具：把你的文档（PDF / TXT / Markdown）放进 `data/`，它就能基于这些文档回答你的问题。
+一个轻量的检索增强生成（RAG）问答工具：把你的文档（PDF / TXT / Markdown）放进 `data/`，它就能基于这些文档回答你的问题。**向量化、检索和索引全部在本机完成，文档不出本机**；答案由 DeepSeek 生成。
 
 - **向量化本地完成**（fastembed），不依赖任何付费 embedding API
-- **答案用 DeepSeek 生成**（你有 key 就能用）
+- **答案用 DeepSeek 生成**（需要 API key）
 - **文档不出本机**，隐私友好
 - 自带**命令行**与**网页界面**两种用法
 
@@ -20,7 +20,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-在 `.env` 里填入你的 DeepSeek key（已帮你从之前的项目复用）：
+在 `.env` 里填入你的 DeepSeek key（申请：https://platform.deepseek.com/ ）：
 
 ```
 DEEPSEEK_API_KEY=你的key
@@ -81,7 +81,7 @@ ai-rag-qa/
 │  ├─ qa.py         # 调 DeepSeek 生成答案
 │  ├─ cli.py        # 命令行入口
 │  └─ app.py        # Streamlit 网页界面
-├─ .env             # DeepSeek key（已填好）
+├─ .env             # DeepSeek key（需自行填入，不入库）
 └─ requirements.txt
 ```
 
